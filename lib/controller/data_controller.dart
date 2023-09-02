@@ -15,12 +15,27 @@ class DataController extends GetxController {
 
   MovieListModel? movieListModel;
 
-  Future<bool> getMovieList() async{
+  Future<bool> getMovieList(int type) async{
+
+    String stringType = "now_playing";
+    switch(type){
+      case 1 :
+        stringType = "now_playing";
+        break;
+      case 2 :
+        stringType = "popular";
+        break;
+      case 3 :
+        stringType = "top_rated";
+        break;
+      case 4 :
+        stringType = "upcoming";
+        break;
+    }
 
     try {
-      await httpService.getMovieList();
 
-      MovieListModel info = await httpService.getMovieList();
+      MovieListModel info = await httpService.getMovieList(stringType);
       movieListModel = info;
       update();
       return true;

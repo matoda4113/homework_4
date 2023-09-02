@@ -7,19 +7,18 @@ import 'global.dart';
 
 class HttpService {
 
-  Future<MovieListModel> getMovieList() async {
+  Future<MovieListModel> getMovieList(String mode) async {
 
     Map<String,String> headers ={
       "accept": 'application/json',
       "Authorization": 'Bearer ${accessCode}'
     };
-    String url = "https://api.themoviedb.org/3/movie/now_playing?language=ko-KR&page=1";
+    String url = "https://api.themoviedb.org/3/movie/${mode}?language=ko-KR&page=1";
 
     Uri uri = Uri.parse(url);
 
     final response = await http.get(uri , headers: headers);
     if (response.statusCode == 200) {
-      logger.e(response.body);
       return MovieListModel.fromJson(json.decode(response.body));
     } else {
       throw Exception("server_fail");
