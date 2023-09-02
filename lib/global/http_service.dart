@@ -13,7 +13,7 @@ class HttpService {
       "accept": 'application/json',
       "Authorization": 'Bearer ${accessCode}'
     };
-    String url = "https://api.themoviedb.org/3/movie/${mode}?language=ko-KR&page=1";
+    String url = "https://api.themoviedb.org/3/movie/${mode}?language=${prefs.getString('language')}&page=1";
 
     Uri uri = Uri.parse(url);
 

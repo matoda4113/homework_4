@@ -15,7 +15,14 @@ class DataController extends GetxController {
 
   MovieListModel? movieListModel;
 
-  Future<bool> getMovieList(int type) async{
+  int type = 1;
+
+  Future<void> setType(int tab) async{
+    type = tab;
+    update();
+  }
+
+  Future<bool> getMovieList() async{
 
     String stringType = "now_playing";
     switch(type){

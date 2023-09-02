@@ -1,5 +1,8 @@
 //로거 설정
 import 'package:logger/logger.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+late SharedPreferences prefs;
 
 Logger logger = Logger(
   printer: PrettyPrinter(

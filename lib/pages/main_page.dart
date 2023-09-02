@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:homework_4/component/movie_list_card.dart';
 import 'package:homework_4/controller/data_controller.dart';
-
-import '../controller/data_controller.dart';
+import 'package:homework_4/pages/setting_page.dart';
 import '../global/global.dart';
 
 ///MainPage
@@ -24,10 +23,8 @@ class _MainPageState extends State<MainPage> {
   void initState() {
     super.initState();
     logger.w("MainPage");
-    dataController.getMovieList(type);
+    dataController.getMovieList();
   }
-
-  int type = 1;
 
 
   @override
@@ -36,6 +33,34 @@ class _MainPageState extends State<MainPage> {
       builder: (controller) {
         return Scaffold(
           appBar: AppBar(title: const Text("영화 리스트")),
+          drawer: Drawer(
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: <Widget>[
+                DrawerHeader(
+                  padding: EdgeInsets.zero,
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                  ),
+                  child: Image.network('https://cdn.pixabay.com/photo/2023/05/02/21/08/river-7966163_1280.png',fit: BoxFit.cover,),
+                ),
+                ListTile(
+                  leading: Icon(Icons.home),
+                  title: Text('Home'),
+                  onTap: () {
+                    Get.back();
+                  },
+                ),
+                ListTile(
+                  leading: Icon(Icons.settings),
+                  title: Text('Settings'),
+                  onTap: () {
+                    Get.to(()=>SettingPage());
+                  },
+                ),
+              ],
+            ),
+          ),
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Column(
@@ -44,65 +69,56 @@ class _MainPageState extends State<MainPage> {
                 Row(
                   children: [
                     GestureDetector(
-                      onTap: (){
-                        setState(() {
-                          type = 1;
-                        });
-                        controller.getMovieList(type);
+                      onTap: () async{
+                        await dataController.setType(1);
+                        controller.getMovieList();
                       },
                       child: Container(
                         padding: EdgeInsets.symmetric(vertical: 5,horizontal: 10),
                           decoration: BoxDecoration(
-                              color: type ==1 ? Colors.redAccent : Colors.grey,
+                              color: controller.type ==1 ? Colors.redAccent : Colors.grey,
                             borderRadius: BorderRadius.circular(10)
                           ),
                           child: Text("현재 상영중")),
                     ),
                     SizedBox(width: 5,),
                     GestureDetector(
-                      onTap: (){
-
-                        setState(() {
-                          type = 2;
-                        });
-                        controller.getMovieList(type);
+                      onTap: ()async{
+                        await dataController.setType(2);
+                        controller.getMovieList();
                       },
                       child: Container(
                           padding: EdgeInsets.symmetric(vertical: 5,horizontal: 10),
                           decoration: BoxDecoration(
-                              color: type ==2 ? Colors.redAccent : Colors.grey,
+                              color: controller.type ==2 ? Colors.redAccent : Colors.grey,
                               borderRadius: BorderRadius.circular(10)
                           ),
                           child: Text("인기영화")),
                     ),
                     SizedBox(width: 5,),
                     GestureDetector(
-                      onTap: (){
-                        setState(() {
-                          type = 3;
-                        });
-                        controller.getMovieList(type);
+                      onTap: ()async{
+                        await dataController.setType(3);
+                        controller.getMovieList();
                       },
                       child: Container(
                           padding: EdgeInsets.symmetric(vertical: 5,horizontal: 10),
                           decoration: BoxDecoration(
-                              color: type ==3 ? Colors.redAccent : Colors.grey,
+                              color: controller.type ==3 ? Colors.redAccent : Colors.grey,
                               borderRadius: BorderRadius.circular(10)
                           ),
                           child: Text("탑 영화")),
                     ),
                     SizedBox(width: 5,),
                     GestureDetector(
-                      onTap: (){
-                        setState(() {
-                          type = 4;
-                        });
-                        controller.getMovieList(type);
+                      onTap: ()async{
+                        await dataController.setType(4);
+                        controller.getMovieList();
                       },
                       child: Container(
                           padding: EdgeInsets.symmetric(vertical: 5,horizontal: 10),
                           decoration: BoxDecoration(
-                              color: type ==4 ? Colors.redAccent : Colors.grey,
+                              color: controller.type ==4 ? Colors.redAccent : Colors.grey,
                               borderRadius: BorderRadius.circular(10)
                           ),
                           child: Text("개봉 예정")),
