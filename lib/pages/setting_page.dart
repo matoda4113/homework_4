@@ -41,7 +41,7 @@ class _SettingPageState extends State<SettingPage> {
                     GestureDetector(
                       onTap: () async{
                         await prefs.setString('language', "ko-KR");
-                        controller.getMovieList();
+                        // controller.getMovieList();
                       },
                       child: Container(
                           padding: EdgeInsets.symmetric(vertical: 10,horizontal: 20),
@@ -55,7 +55,7 @@ class _SettingPageState extends State<SettingPage> {
                     GestureDetector(
                       onTap: () async{
                         await prefs.setString('language', "en-US");
-                        controller.getMovieList();
+                        // controller.getMovieList();
                       },
                       child: Container(
                           padding: EdgeInsets.symmetric(vertical: 10,horizontal: 20),

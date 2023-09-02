@@ -7,13 +7,13 @@ import 'global.dart';
 
 class HttpService {
 
-  Future<MovieListModel> getMovieList(String mode) async {
+  Future<MovieListModel> getMovieList(String type, int page) async {
 
     Map<String,String> headers ={
       "accept": 'application/json',
       "Authorization": 'Bearer ${accessCode}'
     };
-    String url = "https://api.themoviedb.org/3/movie/${mode}?language=${prefs.getString('language')}&page=1";
+    String url = "https://api.themoviedb.org/3/movie/${type}?language=${prefs.getString('language')}&page=${page}";
 
     Uri uri = Uri.parse(url);
 

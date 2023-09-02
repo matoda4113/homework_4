@@ -27,7 +27,6 @@ class _MovieListCardState extends State<MovieListCard> {
   Widget build(BuildContext context) {
     return Container(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
           children: [
           Container(
               width: double.infinity,
